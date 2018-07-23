@@ -2,6 +2,8 @@ pragma solidity ^0.4.17;
 
 contract Lottery {
   address public manager;
+  address public winner;
+  uint public winnerIndex;
   address[] public players;
 
   constructor() public {
@@ -9,7 +11,7 @@ contract Lottery {
   }
 
   function enter() public payable {
-    require(msg.value > 0.01 ether);
+    require(msg.value == 0.01 ether);
     players.push(msg.sender);
   }
 
@@ -20,6 +22,8 @@ contract Lottery {
   function pickWinner() public restricted {
     uint index = random() % players.length;
     players[index].transfer(address(this).balance);
+    winner = players[index];
+    winnerIndex = index;
     players = new address[](0);
   }
 
@@ -30,5 +34,13 @@ contract Lottery {
 
   function getPlayers() public view returns (address[]) {
     return players;
+  }
+
+  function getWinner() public view returns (address) {
+    return winner;
+  }
+
+  function getWinnerIndex() public view returns (uint) {
+    return winnerIndex;
   }
 }
