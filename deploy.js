@@ -4,7 +4,7 @@ const { interface, bytecode } = require('./compile');
 
 const provider = new HDWalletProvider(
   'baby movie canvas wealth novel essay skin hood unaware lamp coast feed',
-  'https://rinkeby.infura.io/wwyDHRFTXYWxns8Ern9v'
+  'https://rinkeby.infura.io/v3/59c05e5eb5a444ed8fcae6ecc34f24ff',
 );
 
 const web3 = new Web3(provider);
